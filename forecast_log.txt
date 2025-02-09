@@ -1,0 +1,27 @@
+2025-02-09 14:37:44,280 - INFO - SMA calculated: 116.66666666666667 based on input: [100, 120, 110, 130, 125, 115]
+2025-02-09 14:37:44,282 - INFO - WMA calculated: 119.28571428571429 based on input: [100, 120, 110, 130, 125, 115] with weights: [1, 2, 3, 4, 5, 6]
+2025-02-09 14:38:49,226 - INFO - SMA calculated: 120.0 based on input: [100, 120, 110, 130, 125, 115, 140]
+2025-02-09 14:38:49,228 - INFO - WMA calculated: 124.46428571428571 based on input: [100, 120, 110, 130, 125, 115, 140] with weights: [1, 2, 3, 4, 5, 6, 7]
+2025-02-09 14:53:28,736 - WARNING - Anomalies detected at indices: [3] with values: [300]
+2025-02-09 14:53:28,738 - INFO - SMA calculated: 114.0 based on cleaned input: [100, 120, 110, 125, 115]
+2025-02-09 14:53:28,738 - WARNING - Anomalies detected at indices: [3] with values: [300]
+2025-02-09 14:53:28,738 - INFO - WMA calculated: 116.33333333333333 based on cleaned input: [100, 120, 110, 125, 115] with weights: [1, 2, 3, 4, 5]
+2025-02-09 14:53:28,739 - INFO - Trend analysis result: increasing
+2025-02-09 14:55:41,299 - WARNING - Anomalies detected at indices: [3] with values: [300]
+2025-02-09 14:55:41,299 - INFO - SMA calculated: 114.0 based on cleaned input: [100, 120, 110, 125, 115]
+2025-02-09 14:55:41,299 - WARNING - Anomalies detected at indices: [3] with values: [300]
+2025-02-09 14:55:41,300 - INFO - WMA calculated: 116.33333333333333 based on cleaned input: [100, 120, 110, 125, 115] with weights: [1, 2, 3, 4, 5]
+2025-02-09 14:55:41,301 - INFO - Trend analysis result: increasing
+2025-02-09 14:55:41,302 - WARNING - Anomalies detected at indices: [3] with values: [300]
+2025-02-09 14:58:08,074 - WARNING - Anomalies detected with values: [300]
+2025-02-09 14:58:08,074 - WARNING - Anomalies detected with values: [300]
+2025-02-09 14:58:08,074 - INFO - SMA calculated: 114.0 based on cleaned input: [100, 120, 110, 125, 115]
+2025-02-09 14:58:08,075 - WARNING - Anomalies detected with values: [300]
+2025-02-09 14:58:08,075 - INFO - WMA calculated: 116.33333333333333 based on cleaned input: [100, 120, 110, 125, 115] with weights: [1, 2, 3, 4, 5]
+2025-02-09 14:58:08,075 - INFO - Trend analysis result: increasing
+2025-02-09 16:03:13,544 - INFO - No anomalies detected in the data.
+2025-02-09 16:03:13,544 - INFO - No anomalies detected in the data.
+2025-02-09 16:03:13,545 - INFO - SMA calculated: 120.0 based on cleaned input: [100, 120, 110, 130, 125, 115, 140]
+2025-02-09 16:03:13,546 - INFO - No anomalies detected in the data.
+2025-02-09 16:03:13,546 - INFO - WMA calculated: 124.46428571428571 based on cleaned input: [100, 120, 110, 130, 125, 115, 140] with weights: [1, 2, 3, 4, 5, 6, 7]
+2025-02-09 16:03:13,547 - INFO - Trend analysis result: increasing
