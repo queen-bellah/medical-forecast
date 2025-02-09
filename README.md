@@ -44,7 +44,7 @@ ___
 
 1. **Run the script:**
    ```bash
-   python forecast.py
+   python forecast_calculations.py
    ```
 
 
