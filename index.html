@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Supply Forecast Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+        .chart-container { width: 60%; margin: 0 auto; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        canvas { width: 100% !important; height: 250px !important; margin: 15px 0; }
+        h1, h2 { text-align: center; }
+        button { display: block; margin: 20px auto; padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .filter-container { text-align: center; margin-bottom: 20px; }
+        input[type="date"] { padding: 5px; margin: 0 10px; border-radius: 5px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Medical Supply Forecast Visualization</h1>
+
+    <div class="filter-container">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate">
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate">
+
+        <button id="filterButton">Filter Data</button>
+    </div>
+    
+    <div class="chart-container">
+        <h2>Simple Moving Average (SMA)</h2>
+        <canvas id="smaChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>Weighted Moving Average (WMA)</h2>
+        <canvas id="wmaChart"></canvas>
+    </div>
+
+    <script>
+        const dailyUsage = [100, 120, 110, 130, 125, 115];
+        const smaForecast = 114.0;
+        const wmaForecast = 117.5;
+
+        const labels = ['2024-04-01', '2024-04-02', '2024-04-03', '2024-04-04', '2024-04-05', '2024-04-06'];
+
+        function filterData(startDate, endDate) {
+            const filteredIndices = labels.reduce((acc, label, index) => {
+                if ((!startDate || new Date(label) >= new Date(startDate)) && 
+                    (!endDate || new Date(label) <= new Date(endDate))) {
+                    acc.push(index);
+                }
+                return acc;
+            }, []);
+
+            return {
+                filteredLabels: filteredIndices.map(i => labels[i]),
+                filteredUsage: filteredIndices.map(i => dailyUsage[i])
+            };
+        }
+
+        function updateCharts(filteredLabels, filteredUsage) {
+            smaChart.data.labels = filteredLabels;
+            smaChart.data.datasets[0].data = filteredUsage;
+            smaChart.data.datasets[1].data = Array(filteredUsage.length).fill(smaForecast);
+            smaChart.update();
+
+            wmaChart.data.labels = filteredLabels;
+            wmaChart.data.datasets[0].data = filteredUsage;
+            wmaChart.data.datasets[1].data = Array(filteredUsage.length).fill(wmaForecast);
+            wmaChart.update();
+        }
+
+        document.getElementById('filterButton').addEventListener('click', () => {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const { filteredLabels, filteredUsage } = filterData(startDate, endDate);
+            updateCharts(filteredLabels, filteredUsage);
+        });
+
+        // SMA Chart
+        const smaCtx = document.getElementById('smaChart').getContext('2d');
+        const smaChart = new Chart(smaCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Daily Usage',
+                        data: dailyUsage,
+                        borderColor: 'blue',
+                        fill: false,
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        pointBackgroundColor: 'blue'
+                    },
+                    {
+                        label: 'SMA Forecast',
+                        data: Array(dailyUsage.length).fill(smaForecast),
+                        borderColor: 'green',
+                        borderDash: [5, 5],
+                        fill: false,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            }
+        });
+
+        // WMA Chart
+        const wmaCtx = document.getElementById('wmaChart').getContext('2d');
+        const wmaChart = new Chart(wmaCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Daily Usage',
+                        data: dailyUsage,
+                        borderColor: 'blue',
+                        fill: false,
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        pointBackgroundColor: 'blue'
+                    },
+                    {
+                        label: 'WMA Forecast',
+                        data: Array(dailyUsage.length).fill(wmaForecast),
+                        borderColor: 'red',
+                        borderDash: [5, 5],
+                        fill: false,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
