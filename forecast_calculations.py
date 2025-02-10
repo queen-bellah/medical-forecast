@@ -83,8 +83,6 @@ def forecast_usage_wma(usage_list):
     return round(wma_forecast, 2)
 
 
-# Sample data: the number 300 is unusually high and will be flagged as an anomaly
-# daily_usage = [100, 120, 110, 300, 125, 115]  
 daily_usage = [100, 120, 110, 130, 125, 115, 140]
 
 # Find and display anomalies
